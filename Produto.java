@@ -3,6 +3,12 @@ public class Produto {
     private int codigo;
     private float preco;
 
+    public Produto(String nome,int codigo,float preco){
+        this.nome = nome;
+        this.codigo = codigo;
+        this.preco = preco;
+    }
+
     public void setNome(String nome){
         this.nome = nome;
     }
@@ -28,6 +34,8 @@ public class Produto {
     }
 
     public String toString(){
-        return "nome: " + this.nome + " codigo: " + this.codigo + " preço: " + String.format("%.2f", this.preco);
+        return String.format("%-8d" ,this.codigo) + " "
+        + String.format("%-15s", this.nome) + " "
+        + String.format("%.2f", this.preco);
     }
 }

@@ -16,6 +16,7 @@ public class Garcom {
     }
 
     public String toString(){
-        return "nome: " + this.nome + " matricula: " + this.matricula;
+        return String.format("%-9d", this.matricula) + " "
+        + String.format("%s",this.nome);
     }
 }

@@ -1,19 +1,6 @@
 import java.util.Scanner;
 import java.util.LinkedList;
 
-/*
-verificações:
-    codigos já está em uso
-    verifica a existencias básica para da continuidade
-    verificar as entradas
-
-imprementação:
-    funções de imprimir os pedidos, garçom e os produtos já cadastrados
-    fazer com que quando um novo item que já está no pedido seja adicionado não crie um novo item e sim
-incremente o que já existe
-    salvar o garçons e os produtos ja cadastrado em arquivos 
-*/
-
 public class App_Caixa{
     static Scanner input = new Scanner(System.in);
     static float totalCaixa = 0;
@@ -58,6 +45,19 @@ public class App_Caixa{
             System.out.println(i.toString());
         }
         System.out.println("----------+++++++Fim+++++++----------");
+    }
+
+    public static void imprimirItenspedido(Pedido pedido){
+        LinkedList<Item> itens = pedido.getItens();
+        System.out.println("\n---------+++++Itens Pedido+++++----------");
+        
+        System.out.printf("\n%-15s %-3s %s\n","nome","qtd", "preço");
+        for(Item i : itens){
+            System.out.printf("%-15s %-7s %-3s\n", 
+            i.getItemProduto().getNome(), 
+            String.format("%-3d", i.getQuantidade()),
+            String.format("%.2f", i.getItemProduto().getpreco()));
+        }
     }
 
     public static Produto proucurarProduto(int codigo){
@@ -236,6 +236,7 @@ public class App_Caixa{
                         if(pedido == null){
                             System.out.println("Pedido não encontrado!!!");
                         }else{
+                            imprimirItenspedido(pedido);
                             total = pedido.fecharPedido();
                             System.out.printf("Total do pedido: R$%.2f\n", total);
                             pedidos.remove(pedido);

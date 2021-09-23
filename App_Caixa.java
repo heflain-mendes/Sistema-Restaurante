@@ -109,7 +109,7 @@ public class App_Caixa{
         int matricula;
         int codigo;
         float preco;
-        char cadMais;
+        char auxC;
         int quantidade;
         float total;
         int aux = 0;
@@ -211,9 +211,9 @@ public class App_Caixa{
                                 System.out.print("Deseja cadastra mais itens[S/N]? ");
                                 
                                 input.nextLine();
-                                cadMais = input.nextLine().charAt(0);
+                                auxC = input.nextLine().charAt(0);
 
-                                if(cadMais == 'N' || cadMais == 'n'){
+                                if(auxC == 'N' || auxC == 'n'){
                                     break;
                                 }
                             }
@@ -239,14 +239,23 @@ public class App_Caixa{
                             imprimirItenspedido(pedido);
                             total = pedido.fecharPedido();
                             System.out.printf("Total do pedido: R$%.2f\n", total);
-                            pedidos.remove(pedido);
-                            totalCaixa += total;
+                            System.out.printf("Pagamento realizado ? [S/s para sim] ");
+                            input.nextLine();
+                            auxC = input.nextLine().charAt(0);
+
+                            if(auxC == 'S' || auxC == 's'){
+                                pedidos.remove(pedido);
+                                totalCaixa += total;
+                            }
                         }
                     }
                     break;
                 case 6:
                     System.out.println("\n-----+++++Total em Caixa+++++-----");
                     System.out.printf("O total do caixa é R$:%.2f\n",totalCaixa);
+                    System.out.printf("Aperte entre para continuar  ");
+                    input.nextLine();
+
                     break;
                 case 7:
                     System.out.println("liberando a lista de garçons...");
